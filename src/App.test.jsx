@@ -2,22 +2,15 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { shallow } from '@edx/react-unit-test-utils';
 
-import { useIntl } from '@edx/frontend-platform/i18n';
-import { getConfig } from '@edx/frontend-platform';
+import { useIntl, getConfig } from '@openedx/frontend-base';
 
 import { RequestKeys } from 'data/constants/requests';
 import { reduxHooks } from 'hooks';
 import Dashboard from 'containers/Dashboard';
-import LearnerDashboardHeader from 'containers/LearnerDashboardHeader';
-import AppWrapper from 'containers/WidgetContainers/AppWrapper';
 import { App } from './App';
 import messages from './messages';
 
-jest.mock('@edx/frontend-component-footer', () => ({ FooterSlot: 'FooterSlot' }));
-
 jest.mock('containers/Dashboard', () => 'Dashboard');
-jest.mock('containers/LearnerDashboardHeader', () => 'LearnerDashboardHeader');
-jest.mock('containers/WidgetContainers/AppWrapper', () => 'AppWrapper');
 jest.mock('data/redux', () => ({
   selectors: 'redux.selectors',
   actions: 'redux.actions',
@@ -32,7 +25,7 @@ jest.mock('hooks', () => ({
 }));
 jest.mock('data/store', () => 'data/store');
 
-jest.mock('@edx/frontend-platform', () => ({
+jest.mock('@openedx/frontend-base', () => ({
   getConfig: jest.fn(() => ({})),
 }));
 
@@ -54,14 +47,6 @@ describe('App router component', () => {
           .findByType(Helmet)[0]
           .findByType('title')[0];
         expect(control.children[0].el).toEqual(formatMessage(messages.pageTitle));
-      });
-      it('displays learner dashboard header', () => {
-        expect(el.instance.findByType(LearnerDashboardHeader).length).toEqual(1);
-      });
-      it('wraps the header and main components in an AppWrapper widget container', () => {
-        const container = el.instance.findByType(AppWrapper)[0];
-        expect(container.children[0].type).toEqual('LearnerDashboardHeader');
-        expect(container.children[1].type).toEqual('main');
       });
     };
     describe('no network failure', () => {
