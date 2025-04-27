@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppContext } from '@edx/frontend-platform/react';
+import { SiteContext } from '@openedx/frontend-base';
 
 import {
   Chip,
@@ -18,7 +18,7 @@ import { useMasqueradeBarData } from './hooks';
 import './index.scss';
 
 export const MasqueradeBar = () => {
-  const { authenticatedUser } = React.useContext(AppContext);
+  const { authenticatedUser } = React.useContext(SiteContext);
 
   const {
     canMasquerade,

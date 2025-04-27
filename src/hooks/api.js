@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { AppContext } from '@edx/frontend-platform/react';
+import { SiteContext } from '@openedx/frontend-base';
 
-import { RequestKeys } from 'data/constants/requests';
-import { post } from 'data/services/lms/utils';
-import api from 'data/services/lms/api';
+import { RequestKeys } from '../data/constants/requests';
+import { post } from '../data/services/lms/utils';
+import api from '../data/services/lms/api';
 
-import * as reduxHooks from 'data/redux/hooks';
+import * as reduxHooks from '../data/redux/hooks';
 import * as module from './api';
 
 const { useMakeNetworkRequest } = reduxHooks;
@@ -99,7 +99,7 @@ export const useSendConfirmEmail = () => {
 
 export const useCreateCreditRequest = (cardId) => {
   const { providerId } = reduxHooks.useCardCreditData(cardId);
-  const { authenticatedUser: { username } } = React.useContext(AppContext);
+  const { authenticatedUser: { username } } = React.useContext(SiteContext);
   const { courseId } = reduxHooks.useCardCourseRunData(cardId);
   return () => api.createCreditRequest({ providerId, courseId, username });
 };
