@@ -16,7 +16,6 @@ exports[`App router component component initialize failure snapshot 1`] = `
   </HelmetWrapper>
   <div>
     <AppWrapper>
-      <LearnerDashboardHeader />
       <main
         id="main"
       >
@@ -29,7 +28,6 @@ exports[`App router component component initialize failure snapshot 1`] = `
         </Alert>
       </main>
     </AppWrapper>
-    <FooterSlot />
   </div>
 </Fragment>
 `;
@@ -50,14 +48,12 @@ exports[`App router component component no network failure snapshot 1`] = `
   </HelmetWrapper>
   <div>
     <AppWrapper>
-      <LearnerDashboardHeader />
       <main
         id="main"
       >
         <Dashboard />
       </main>
     </AppWrapper>
-    <FooterSlot />
   </div>
 </Fragment>
 `;
@@ -78,14 +74,12 @@ exports[`App router component component no network failure with optimizely proje
   </HelmetWrapper>
   <div>
     <AppWrapper>
-      <LearnerDashboardHeader />
       <main
         id="main"
       >
         <Dashboard />
       </main>
     </AppWrapper>
-    <FooterSlot />
   </div>
 </Fragment>
 `;
@@ -106,14 +100,12 @@ exports[`App router component component no network failure with optimizely url s
   </HelmetWrapper>
   <div>
     <AppWrapper>
-      <LearnerDashboardHeader />
       <main
         id="main"
       >
         <Dashboard />
       </main>
     </AppWrapper>
-    <FooterSlot />
   </div>
 </Fragment>
 `;
@@ -134,7 +126,6 @@ exports[`App router component component refresh failure snapshot 1`] = `
   </HelmetWrapper>
   <div>
     <AppWrapper>
-      <LearnerDashboardHeader />
       <main
         id="main"
       >
@@ -147,7 +138,6 @@ exports[`App router component component refresh failure snapshot 1`] = `
         </Alert>
       </main>
     </AppWrapper>
-    <FooterSlot />
   </div>
 </Fragment>
 `;
