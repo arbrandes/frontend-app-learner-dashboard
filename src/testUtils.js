@@ -1,6 +1,6 @@
 import react from 'react';
 
-import { StrictDict } from 'utils';
+import { StrictDict } from './utils';
 
 /**
  * Mocked formatMessage provided by react-intl
