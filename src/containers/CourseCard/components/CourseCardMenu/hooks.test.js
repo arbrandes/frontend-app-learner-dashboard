@@ -1,5 +1,5 @@
 import { reduxHooks } from 'hooks';
-import track from 'tracking';
+import track from '../../../../tracking';
 import { MockUseState } from 'testUtils';
 
 import * as hooks from './hooks';

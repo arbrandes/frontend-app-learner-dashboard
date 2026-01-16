@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { formatMessage } from 'testUtils';
 import { breakpoints, useWindowSize } from '@openedx/paragon';
 import { reduxHooks } from 'hooks';
-import { IntlProvider } from '@edx/frontend-platform/i18n';
+import { IntlProvider } from '@openedx/frontend-base';
 import { FilterKeys, SortKeys } from 'data/constants/app';
 
 import messages from './messages';

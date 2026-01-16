@@ -1,31 +1,31 @@
 import { useIntl } from '@openedx/frontend-base';
-import track from 'tracking';
+import track from '../../tracking';
 
-import { MockUseState } from 'testUtils';
-import { reduxHooks, apiHooks } from 'hooks';
+import { MockUseState } from '../../testUtils';
+import { reduxHooks, apiHooks } from '../../hooks';
 
 import { LEAVE_OPTION } from './constants';
 import messages from './messages';
 import * as hooks from './hooks';
 
-jest.mock('@edx/frontend-platform/i18n', () => {
-  const { formatMessage } = jest.requireActual('testUtils');
+jest.mock('@openedx/frontend-base', () => {
+  const { formatMessage } = jest.requireActual('../../testUtils');
   return {
-    ...jest.requireActual('@edx/frontend-platform/i18n'),
+    ...jest.requireActual('@openedx/frontend-base'),
     useIntl: () => ({
       formatMessage,
     }),
   };
 });
 
-jest.mock('tracking', () => ({
+jest.mock('../../tracking', () => ({
   entitlements: {
     newSession: jest.fn(),
     switchSession: jest.fn(),
     leaveSession: jest.fn(),
   },
 }));
-jest.mock('hooks', () => ({
+jest.mock('../../hooks', () => ({
   reduxHooks: {
     useCardCourseData: jest.fn(),
     useCardCourseRunData: jest.fn(),

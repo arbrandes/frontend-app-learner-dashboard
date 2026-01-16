@@ -121,3 +121,24 @@ export const useCreateCreditRequest = (cardId) => {
   const { courseId } = reduxHooks.useCardCourseRunData(cardId);
   return () => api.createCreditRequest({ providerId, courseId, username });
 };
+
+export const useClearMasquerade = () => {
+  const clearRequest = reduxHooks.useClearRequest();
+  const initializeApp = module.useInitializeApp();
+  return () => {
+    clearRequest(RequestKeys.masquerade);
+    initializeApp();
+  };
+};
+
+export const useMasqueradeAs = (cardId) => {
+  reduxHooks.useCardEntitlementData(cardId);
+  const onSuccess = ({ data }) => {
+    reduxHooks.useLoadData()(data);
+  };
+
+  return module.useNetworkRequest(
+    (user) => api.initializeList({ user }),
+    { onSuccess, requestKey: RequestKeys.masquerade },
+  );
+};

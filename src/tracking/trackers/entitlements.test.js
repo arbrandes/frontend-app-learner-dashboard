@@ -1,8 +1,8 @@
-import { createEventTracker } from 'data/services/segment/utils';
+import { createEventTracker } from '../../data/services/segment/utils';
 import { eventNames } from '../constants';
 import * as trackers from './entitlements';
 
-jest.mock('data/services/segment/utils', () => ({
+jest.mock('../../data/services/segment/utils', () => ({
   createEventTracker: jest.fn(args => ({ createEventTracker: args })),
 }));
 

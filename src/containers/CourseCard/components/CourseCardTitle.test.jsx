@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { reduxHooks } from 'hooks';
-import track from 'tracking';
 import useActionDisabledState from './hooks';
 import CourseCardTitle from './CourseCardTitle';
+import track from 'tracking';
 
 jest.mock('tracking', () => ({
   course: {

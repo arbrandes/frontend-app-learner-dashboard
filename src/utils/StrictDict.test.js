@@ -19,7 +19,7 @@ describe('StrictDict', () => {
     window.console.log = jest.fn();
     window.Error = jest.fn(error => ({ stack: error }));
   });
-  afterAll(() => {
+  afterEach(() => {
     window.console.error = consoleError;
     window.console.log = consoleLog;
     window.Error = windowError;

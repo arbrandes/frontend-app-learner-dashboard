@@ -11,10 +11,10 @@ jest.mock('hooks', () => ({
   },
 }));
 
-jest.mock('@edx/frontend-platform/i18n', () => {
+jest.mock('@openedx/frontend-base', () => {
   const { formatMessage } = jest.requireActual('testUtils');
   return {
-    ...jest.requireActual('@edx/frontend-platform/i18n'),
+    ...jest.requireActual('@openedx/frontend-base'),
     useIntl: () => ({
       formatMessage,
     }),

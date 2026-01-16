@@ -1,11 +1,18 @@
 import { useToggle } from '@openedx/paragon';
 
 import { MockUseState } from 'testUtils';
-import { reduxHooks } from 'hooks';
 
 import track from 'tracking';
+import { reduxHooks } from '../../hooks';
 
 import * as hooks from './hooks';
+
+jest.mock('../../hooks', () => ({
+  reduxHooks: {
+    useAddFilter: jest.fn(),
+    useRemoveFilter: jest.fn(),
+  },
+}));
 
 jest.mock('@openedx/paragon', () => ({
   ...jest.requireActual('@openedx/paragon'),
@@ -23,13 +30,6 @@ jest.mock('tracking', () => ({
   },
 }));
 
-jest.mock('hooks', () => ({
-  reduxHooks: {
-    useAddFilter: jest.fn(),
-    useRemoveFilter: jest.fn(),
-  },
-}));
-
 const state = new MockUseState(hooks);
 
 describe('CourseFilterControls hooks', () => {
@@ -38,9 +38,12 @@ describe('CourseFilterControls hooks', () => {
   const setSortBy = jest.fn();
 
   const removeFilter = jest.fn();
-  reduxHooks.useRemoveFilter.mockReturnValue(removeFilter);
   const addFilter = jest.fn();
-  reduxHooks.useAddFilter.mockReturnValue(addFilter);
+  
+  beforeEach(() => {
+    reduxHooks.useRemoveFilter.mockReturnValue(removeFilter);
+    reduxHooks.useAddFilter.mockReturnValue(addFilter);
+  });
 
   const toggleOpen = jest.fn();
   const toggleClose = jest.fn();

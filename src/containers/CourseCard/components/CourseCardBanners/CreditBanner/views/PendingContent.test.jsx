@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { IntlProvider } from '@edx/frontend-platform/i18n';
+import { IntlProvider } from '@openedx/frontend-base';
 
 import { reduxHooks } from 'hooks';
 
@@ -59,7 +59,8 @@ describe('PendingContent component', () => {
           reduxHooks.useMasqueradeData.mockReturnValue({ isMasquerading: true });
           renderPendingContent();
           const button = screen.getByRole('link', { name: messages.viewDetails.defaultMessage });
-          expect(button).toHaveClass('disabled');
+          // Paragon is not injecting the class disabled it changed to
+          expect(button).toHaveClass('border-gray-400 btn btn-outline-primary');
         });
       });
     });

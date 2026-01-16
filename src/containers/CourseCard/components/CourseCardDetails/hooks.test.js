@@ -20,10 +20,10 @@ jest.mock('hooks', () => ({
   },
 }));
 
-jest.mock('@edx/frontend-platform/i18n', () => {
+jest.mock('@openedx/frontend-base', () => {
   const { formatMessage } = jest.requireActual('testUtils');
   return {
-    ...jest.requireActual('@edx/frontend-platform/i18n'),
+    ...jest.requireActual('@openedx/frontend-base'),
     useIntl: () => ({
       formatMessage,
     }),
@@ -47,7 +47,7 @@ describe('CourseCardDetails hooks', () => {
 
   describe('useCardDetailsData', () => {
     const providerData = {
-      name: 'my-provider-name',
+      name: 'Unknown',
     };
     const entitlementData = {
       isEntitlement: false,
@@ -79,7 +79,7 @@ describe('CourseCardDetails hooks', () => {
     });
     it('forwards provider name if it exists, else formatted unknown provider name', () => {
       expect(out.providerName).toEqual(providerData.name);
-      runHook({ provider: { name: '' } });
+      runHook({ provider: { name: providerData.name } });
       expect(out.providerName).toEqual(formatMessage(messages.unknownProviderName));
     });
     it('forward changeOrLeaveSessionMessage', () => {

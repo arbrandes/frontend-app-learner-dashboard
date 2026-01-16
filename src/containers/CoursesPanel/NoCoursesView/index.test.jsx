@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { IntlProvider } from '@edx/frontend-platform/i18n';
+import { IntlProvider } from '@openedx/frontend-base';
 import { formatMessage } from 'testUtils';
-import { baseAppUrl } from 'data/services/lms/urls';
+import { baseAppUrl } from './../../../data/services/lms/urls';
 
 import EmptyCourse from '.';
 import messages from './messages';

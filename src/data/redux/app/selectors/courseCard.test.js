@@ -1,6 +1,6 @@
 import { keyStore } from 'utils';
 import { baseAppUrl } from 'data/services/lms/urls';
-import { EXECUTIVE_EDUCATION_COURSE_MODES } from 'data/constants/course';
+import { EXECUTIVE_EDUCATION_COURSE_MODES } from '../../../../data/constants/course';
 
 import simpleSelectors from './simpleSelectors';
 import * as module from './courseCard';

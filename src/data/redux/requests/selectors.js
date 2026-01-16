@@ -16,6 +16,16 @@ export const errorCode = (request) => request.error?.response?.data;
 
 export const data = (request) => request.data;
 
+export const masquerade = (state) => {
+  const request = state.requests[RequestKeys.masquerade] || {};
+  return {
+    isMasquerading: request.status === RequestStates.completed,
+    isMasqueradingFailed: request.status === RequestStates.failed,
+    isMasqueradingPending: request.status === RequestStates.pending,
+    masqueradeErrorStatus: request.error?.response?.status,
+  };
+};
+
 export default StrictDict({
   requestStatus,
   isInactive: statusSelector(isInactive),
@@ -26,4 +36,5 @@ export default StrictDict({
   errorCode: statusSelector(errorCode),
   errorStatus: statusSelector(errorStatus),
   data: statusSelector(data),
+  masquerade,
 });

@@ -12,7 +12,7 @@ jest.mock('hooks', () => ({
   },
 }));
 
-jest.mock('slots/CourseCardActionSlot', () => jest.fn(() => <div>CourseCardActionSlot</div>));
+jest.mock('../../../../slots/CourseCardActionSlot', () => jest.fn(() => <div>CourseCardActionSlot</div>));
 jest.mock('./SelectSessionButton', () => jest.fn(() => <div>SelectSessionButton</div>));
 jest.mock('./ViewCourseButton', () => jest.fn(() => <div>ViewCourseButton</div>));
 jest.mock('./BeginCourseButton', () => jest.fn(() => <div>BeginCourseButton</div>));

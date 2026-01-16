@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { IntlProvider } from '@edx/frontend-platform/i18n';
+import { IntlProvider } from '@openedx/frontend-base';
+import { MemoryRouter } from 'react-router-dom';
 import { FilterKeys } from 'data/constants/app';
 import { reduxHooks } from 'hooks';
 
@@ -29,10 +30,6 @@ jest.mock('containers/CourseFilterControls', () => ({
   CourseFilterControls: jest.fn(() => <div>CourseFilterControls</div>),
 }));
 
-jest.mock('@openedx/frontend-plugin-framework', () => ({
-  PluginSlot: 'PluginSlot',
-}));
-
 const filters = Object.values(FilterKeys);
 
 reduxHooks.useHasCourses.mockReturnValue(true);
@@ -51,7 +48,13 @@ describe('CoursesPanel', () => {
       ...defaultCourseListData,
       ...courseListData,
     });
-    return render(<IntlProvider locale="en"><CoursesPanel /></IntlProvider>);
+    return render(
+      <MemoryRouter>
+        <IntlProvider locale="en">
+          <CoursesPanel />
+        </IntlProvider>
+      </MemoryRouter>
+    );
   };
 
   describe('no courses', () => {

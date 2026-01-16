@@ -1,6 +1,6 @@
 import { mockLocation } from 'testUtils';
 import { keyStore } from 'utils';
-import eventNames from 'tracking/constants';
+import { eventNames } from '../../../tracking/constants';
 import * as api from './api';
 import * as utils from './utils';
 import urls from './urls';

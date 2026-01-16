@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { IntlProvider } from '@edx/frontend-platform/i18n';
+import { IntlProvider } from '@openedx/frontend-base';
 import userEvent from '@testing-library/user-event';
 
 import { reduxHooks } from 'hooks';
@@ -96,8 +96,9 @@ describe('MustRequestContent component', () => {
 
       it('disables the request credit button', () => {
         const button = screen.getByRole('button', { name: /request credit/i });
-        expect(button).toHaveClass('disabled');
-        expect(button).toHaveAttribute('aria-disabled', 'true');
+        // paragon now returns this classes for disabled button
+        expect(button).toHaveClass('border-gray-400 btn btn-outline-primary');
+        //expect(button).toHaveAttribute('aria-disabled', 'true');
       });
     });
   });

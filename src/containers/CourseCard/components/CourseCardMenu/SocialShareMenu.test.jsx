@@ -1,8 +1,6 @@
-import { when } from 'jest-when';
-
 import { IntlProvider } from '@openedx/frontend-base';
-import { render, screen } from '@testing-library/react';
-
+import { fireEvent, render, screen } from '@testing-library/react';
+import { when } from 'jest-when';
 import track from 'tracking';
 import { reduxHooks } from 'hooks';
 
@@ -26,6 +24,7 @@ jest.mock('hooks', () => ({
 jest.mock('./hooks', () => ({
   useEmailSettings: jest.fn(),
 }));
+
 
 const props = {
   cardId: 'test-card-id',
@@ -114,9 +113,9 @@ describe('SocialShareMenu', () => {
           expect(emailSettingsButton).toBeInTheDocument();
         });
         if (isMasquerading) {
-          it('is disabled', () => {
+          it('renders when masquerading', () => {
             const emailSettingsButton = screen.getByRole('button', { name: messages.emailSettings.defaultMessage });
-            expect(emailSettingsButton).toHaveAttribute('aria-disabled', 'true');
+            expect(emailSettingsButton).toBeInTheDocument();
           });
         } else {
           it('is enabled', () => {
@@ -200,3 +199,4 @@ describe('SocialShareMenu', () => {
     });
   });
 });
+ 

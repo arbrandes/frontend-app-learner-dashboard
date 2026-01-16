@@ -1,9 +1,9 @@
 import { keyStore } from 'utils';
-import { createEventTracker, createLinkTracker } from 'data/services/segment/utils';
+import { createEventTracker, createLinkTracker } from '../../data/services/segment/utils';
 import { categories, eventNames } from '../constants';
 import * as trackers from './course';
 
-jest.mock('data/services/segment/utils', () => ({
+jest.mock('../../data/services/segment/utils', () => ({
   createEventTracker: jest.fn(args => ({ createEventTracker: args })),
   createLinkTracker: jest.fn((cb, href) => ({ createLinkTracker: { cb, href } })),
 }));

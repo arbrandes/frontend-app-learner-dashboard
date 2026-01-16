@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-
-import { IntlProvider } from '@edx/frontend-platform/i18n';
+import { IntlProvider } from '@openedx/frontend-base';
+import { MemoryRouter } from 'react-router-dom';
 import { reduxHooks } from 'hooks';
 import WidgetSidebarSlot from '.';
 
@@ -15,7 +15,13 @@ const courseSearchUrl = 'mock-url';
 describe('WidgetSidebar', () => {
   it('renders PluginSlot with correct children', () => {
     reduxHooks.usePlatformSettingsData.mockReturnValueOnce({ courseSearchUrl });
-    render(<IntlProvider locale="en"><WidgetSidebarSlot /></IntlProvider>);
+    render(
+      <MemoryRouter>
+        <IntlProvider locale="en">
+          <WidgetSidebarSlot />
+        </IntlProvider>
+      </MemoryRouter>
+    );
     const pluginSlot = screen.getByText('Looking for a new challenge?');
     expect(pluginSlot).toBeDefined();
   });
