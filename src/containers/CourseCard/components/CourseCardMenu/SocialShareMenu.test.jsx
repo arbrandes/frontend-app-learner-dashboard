@@ -1,5 +1,5 @@
 import { IntlProvider } from '@openedx/frontend-base';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { when } from 'jest-when';
 import track from 'tracking';
 import { reduxHooks } from 'hooks';

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { useIntl } from '@openedx/frontend-base';

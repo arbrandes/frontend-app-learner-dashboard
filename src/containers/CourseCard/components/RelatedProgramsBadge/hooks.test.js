@@ -24,7 +24,7 @@ jest.mock('@openedx/frontend-base', () => {
 const cardId = 'test-card-id';
 
 const state = new MockUseState(hooks);
-let numPrograms = 3;
+let numPrograms = 27;
 
 describe('RelatedProgramsBadge hooks', () => {
   const { formatMessage } = useIntl();
