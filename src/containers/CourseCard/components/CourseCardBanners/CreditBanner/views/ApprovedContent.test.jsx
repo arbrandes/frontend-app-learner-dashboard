@@ -2,13 +2,13 @@ import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 import { formatMessage } from 'testUtils';
 import { reduxHooks } from 'hooks';
+import MasqueradeUserContext from '../../../../../../data/contexts/MasqueradeUserContext';
 import messages from './messages';
 import ApprovedContent from './ApprovedContent';
 
 jest.mock('hooks', () => ({
   reduxHooks: {
     useCardCreditData: jest.fn(),
-    useMasqueradeData: jest.fn(),
   },
 }));
 
@@ -18,12 +18,19 @@ const credit = {
   providerName: 'test-credit-provider-name',
 };
 reduxHooks.useCardCreditData.mockReturnValue(credit);
-reduxHooks.useMasqueradeData.mockReturnValue({ isMasquerading: false });
+
+const renderWithMasquerading = (isMasquerading = false) => render(
+  <IntlProvider locale="en">
+    <MasqueradeUserContext.Provider value={{ isMasquerading }}>
+      <ApprovedContent cardId={cardId} />
+    </MasqueradeUserContext.Provider>
+  </IntlProvider>
+);
 
 describe('ApprovedContent component', () => {
   describe('hooks', () => {
     it('initializes credit data with cardId', () => {
-      render(<IntlProvider locale="en"><ApprovedContent cardId={cardId} /></IntlProvider>);
+      renderWithMasquerading();
       expect(reduxHooks.useCardCreditData).toHaveBeenCalledWith(cardId);
     });
   });
@@ -31,7 +38,7 @@ describe('ApprovedContent component', () => {
     describe('rendered CreditContent component', () => {
       beforeEach(() => {
         jest.clearAllMocks();
-        render(<IntlProvider locale="en"><ApprovedContent cardId={cardId} /></IntlProvider>);
+        renderWithMasquerading();
       });
       it('action.message is formatted viewCredit message', () => {
         const actionButton = screen.getByRole('link', { name: messages.viewCredit.defaultMessage });
@@ -56,15 +63,13 @@ describe('ApprovedContent component', () => {
     });
     describe('when masquerading', () => {
       beforeEach(() => {
-        reduxHooks.useMasqueradeData.mockReturnValue({ isMasquerading: true });
-        render(<IntlProvider locale="en"><ApprovedContent cardId={cardId} /></IntlProvider>);
+        renderWithMasquerading(true);
       });
 
       it('disables the action button', () => {
         const actionButton = screen.getByRole('link', { name: messages.viewCredit.defaultMessage });
-        // Paragon is not injecting this arribute that's why for now is commented, not it add this classes as well instead of class disabled
-        // expect(actionButton).toHaveAttribute('aria-disabled', 'true');
-        expect(actionButton).toHaveClass('border-gray-400 btn btn-outline-primary');
+        expect(actionButton).toHaveAttribute('aria-disabled', 'true');
+        expect(actionButton).toHaveClass('disabled');
       });
 
       it('still renders provider name and link correctly', () => {

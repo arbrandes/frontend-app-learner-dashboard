@@ -2,12 +2,13 @@ import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 
 import { reduxHooks } from 'hooks';
+import MasqueradeUserContext from '../../../../../../data/contexts/MasqueradeUserContext';
 
 import messages from './messages';
 import PendingContent from './PendingContent';
 
 jest.mock('hooks', () => ({
-  reduxHooks: { useCardCreditData: jest.fn(), useMasqueradeData: jest.fn() },
+  reduxHooks: { useCardCreditData: jest.fn() },
 }));
 
 const cardId = 'test-card-id';
@@ -17,11 +18,12 @@ reduxHooks.useCardCreditData.mockReturnValue({
   providerName,
   providerStatusUrl,
 });
-reduxHooks.useMasqueradeData.mockReturnValue({ isMasquerading: false });
 
-const renderPendingContent = () => render(
+const renderPendingContent = (isMasquerading = false) => render(
   <IntlProvider messages={{}} locale="en">
-    <PendingContent cardId={cardId} />
+    <MasqueradeUserContext.Provider value={{ isMasquerading }}>
+      <PendingContent cardId={cardId} />
+    </MasqueradeUserContext.Provider>
   </IntlProvider>,
 );
 describe('PendingContent component', () => {
@@ -56,11 +58,10 @@ describe('PendingContent component', () => {
       });
       describe('when masqueradeData is true', () => {
         it('disables the view details button', () => {
-          reduxHooks.useMasqueradeData.mockReturnValue({ isMasquerading: true });
-          renderPendingContent();
+          renderPendingContent(true);
           const button = screen.getByRole('link', { name: messages.viewDetails.defaultMessage });
-          // Paragon is not injecting the class disabled it changed to
-          expect(button).toHaveClass('border-gray-400 btn btn-outline-primary');
+          expect(button).toHaveAttribute('aria-disabled', 'true');
+          expect(button).toHaveClass('disabled');
         });
       });
     });
