@@ -104,7 +104,9 @@ describe('courseList selector module', () => {
         filterSpy.mockReturnValue(({ val }) => val > 0);
         sortSpy.mockReturnValue((v1, v2) => {
           const [a, b] = [v1, v2].map(({ val }) => val);
-          if (a === b) { return 0; }
+          if (a === b) {
+            return 0;
+          }
           return (a > b) ? 1 : -1;
         });
         const testCourses = {

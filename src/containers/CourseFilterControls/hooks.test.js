@@ -39,7 +39,7 @@ describe('CourseFilterControls hooks', () => {
 
   const removeFilter = jest.fn();
   const addFilter = jest.fn();
-  
+
   beforeEach(() => {
     reduxHooks.useRemoveFilter.mockReturnValue(removeFilter);
     reduxHooks.useAddFilter.mockReturnValue(addFilter);

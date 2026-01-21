@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { within } from '@testing-library/react';
 
 // import fakeData from 'data/services/lms/fakeData';

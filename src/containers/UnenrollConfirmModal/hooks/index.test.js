@@ -116,7 +116,7 @@ describe('UnenrollConfirmModal hooks', () => {
       });
     });
   });
-  
+
   describe('modalState', () => {
     // Helper function to compute modalState based on the same logic as the actual hook
     const getModalState = (isConfirmed, reason) => {

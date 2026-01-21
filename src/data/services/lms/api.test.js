@@ -32,9 +32,9 @@ describe('lms api methods', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test('keys identical to module', () => {
-    /* eslint-disable-next-line global-require */
-    const { default: defaultApi, ...rest } = require('./api');
+  test('keys identical to module', async () => {
+    const mod = await import('./api');
+    const { default: defaultApi, ...rest } = mod;
     expect(Object.keys(rest).sort()).toMatchObject(Object.keys(defaultApi).sort());
   });
   describe('initializeList', () => {

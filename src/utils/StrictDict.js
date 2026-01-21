@@ -1,4 +1,3 @@
-
 const strictGet = (target, name) => {
   if (name === Symbol.toStringTag) {
     return target;
@@ -12,10 +11,6 @@ const strictGet = (target, name) => {
     return target[name];
   }
 
-  if (typeof window !== 'undefined') {
-    window.console?.error({ target, name });
-    window.console?.error(`invalid property "${name}"`);
-  }
   return undefined;
 };
 

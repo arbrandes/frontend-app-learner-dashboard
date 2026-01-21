@@ -1,4 +1,3 @@
-
 import { useIntl } from '@openedx/frontend-base';
 import { useWindowSize, breakpoints } from '@openedx/paragon';
 import { apiHooks } from '../../hooks';

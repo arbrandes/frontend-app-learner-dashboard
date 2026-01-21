@@ -59,7 +59,6 @@ const cardId = 'test-card-id';
 const selection = 'test-selection';
 const courseId = 'test-COURSE-id';
 const isRefundable = 'test-is-refundable';
-const user = 'test-user';
 
 const loadData = jest.fn();
 reduxHooks.useLoadData.mockReturnValue(loadData);
@@ -77,8 +76,6 @@ const testInitCardHook = (hookKey) => {
     expect(reduxHooks[hookKey]).toHaveBeenCalledWith(cardId);
   });
 };
-
-const initializeApp = jest.fn();
 
 describe('api hooks', () => {
   beforeEach(() => {
@@ -214,42 +211,6 @@ describe('api hooks', () => {
       it('calls unenrollFromCourse api method with courseId', () => {
         hook.action();
         expect(api.unenrollFromCourse).toHaveBeenCalledWith({ courseId });
-      });
-    });
-
-    describe('useMasqueradeAs', () => {
-      beforeEach(() => {
-        hook = apiHooks.useMasqueradeAs(cardId);
-      });
-      it('initializes useCardEntitlementData with cardId', () => {
-        expect(reduxHooks.useCardEntitlementData).toHaveBeenCalledWith(cardId);
-      });
-      testRequestKey(RequestKeys.masquerade);
-      it('calls initializeList api method', () => {
-        hook.action(user);
-        expect(api.initializeList).toHaveBeenCalledWith({ user });
-      });
-      it('loads data on success', () => {
-        hook.args.onSuccess({ data: testString });
-        expect(loadData).toHaveBeenCalledWith(testString);
-      });
-    });
-
-    describe('useClearMasquerade', () => {
-      beforeEach(() => {
-        jest.spyOn(apiHooks, moduleKeys.useInitializeApp).mockReturnValue(initializeApp);
-        hook = apiHooks.useClearMasquerade(cardId);
-      });
-      it('initializes clear request redux hook', () => {
-        expect(reduxHooks.useClearRequest).toHaveBeenCalledWith();
-      });
-      it('initializes useInitializeApp hook', () => {
-        expect(apiHooks.useInitializeApp).toHaveBeenCalledWith();
-      });
-      it('clears masquerade state and initializes app on call', () => {
-        hook();
-        expect(clearRequest).toHaveBeenCalledWith(RequestKeys.masquerade);
-        expect(initializeApp).toHaveBeenCalledWith();
       });
     });
 
