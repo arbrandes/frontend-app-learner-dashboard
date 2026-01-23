@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 import { MemoryRouter } from 'react-router-dom';
 
-import { reduxHooks } from 'hooks';
+import { reduxHooks } from '@src/hooks';
 import CourseCardBanners from '.';
 
 jest.mock('./CourseBanner', () => jest.fn(() => <div>CourseBanner</div>));
@@ -19,7 +19,7 @@ const mockedComponents = [
   'RelatedProgramsBanner',
 ];
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useCardEnrollmentData: jest.fn(() => ({ isEnrolled: true })),
   },

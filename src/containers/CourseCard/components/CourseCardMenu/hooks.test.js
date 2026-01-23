@@ -1,10 +1,10 @@
-import { reduxHooks } from 'hooks';
-import track from '../../../../tracking';
-import { MockUseState } from 'testUtils';
+import { reduxHooks } from '@src/hooks';
+import track from '@src/tracking';
+import { MockUseState } from '@src/testUtils';
 
 import * as hooks from './hooks';
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useCardCertificateData: jest.fn(),
     useCardEnrollmentData: jest.fn(),

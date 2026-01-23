@@ -1,6 +1,4 @@
-import { getSiteConfig } from '@openedx/frontend-base';
 import { StrictDict } from '../../utils';
-export const routePath = `${getSiteConfig().PUBLIC_PATH}:courseId`;
 export const locationId = window.location.pathname.slice(1);
 
 export const SortKeys = StrictDict({

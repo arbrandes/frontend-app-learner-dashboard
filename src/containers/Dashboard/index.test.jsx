@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 
-import { reduxHooks, apiHooks } from 'hooks';
+import { reduxHooks, apiHooks } from '@src/hooks';
 import hooks from './hooks';
 import Dashboard from './';
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useHasCourses: jest.fn(),
     useShowSelectSessionModal: jest.fn(),
@@ -22,8 +22,8 @@ jest.mock('./hooks', () => ({
 }));
 
 jest.mock('../../slots/DashboardModalSlot', () => jest.fn(() => <div>DashboardModalSlot</div>));
-jest.mock('containers/CoursesPanel', () => jest.fn(() => <div>CoursesPanel</div>));
-jest.mock('containers/SelectSessionModal', () => jest.fn(() => <div>SelectSessionModal</div>));
+jest.mock('@src/containers/CoursesPanel', () => jest.fn(() => <div>CoursesPanel</div>));
+jest.mock('@src/containers/SelectSessionModal', () => jest.fn(() => <div>SelectSessionModal</div>));
 jest.mock('./DashboardLayout', () => jest.fn(() => <div>DashboardLayout</div>));
 jest.mock('./LoadingView', () => jest.fn(() => <div>LoadingView</div>));
 

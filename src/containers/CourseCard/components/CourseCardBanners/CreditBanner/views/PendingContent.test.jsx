@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 
-import { reduxHooks } from 'hooks';
-import MasqueradeUserContext from '../../../../../../data/contexts/MasqueradeUserContext';
+import { reduxHooks } from '@src/hooks';
+import MasqueradeUserContext from '@src/data/contexts/MasqueradeUserContext';
 
 import messages from './messages';
 import PendingContent from './PendingContent';
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: { useCardCreditData: jest.fn() },
 }));
 

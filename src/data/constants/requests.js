@@ -18,7 +18,6 @@ export const RequestKeys = StrictDict({
   enrollEntitlementSession: 'enrollEntitlementSession',
   leaveEntitlementSession: 'leaveEntitlementSession',
   recommendedCourses: 'recommendedCourses',
-  masquerade: 'masquerade',
 });
 
 export const ErrorCodes = StrictDict({

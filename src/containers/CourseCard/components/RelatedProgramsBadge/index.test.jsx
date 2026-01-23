@@ -3,7 +3,7 @@ import { IntlProvider } from '@openedx/frontend-base';
 import RelatedProgramsBadge from '../RelatedProgramsBadge';
 import useRelatedProgramsBadge from './hooks';
 
-jest.mock('../../../RelatedProgramsModal', () => 'RelatedProgramsModal');
+jest.mock('@src/containers/RelatedProgramsModal', () => 'RelatedProgramsModal');
 jest.mock('./hooks', () => jest.fn());
 
 const hookProps = {

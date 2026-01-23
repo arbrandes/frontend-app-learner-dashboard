@@ -1,18 +1,18 @@
 import { useIntl } from '@openedx/frontend-base';
 
-import { MockUseState } from 'testUtils';
-import { reduxHooks } from '../../../../hooks';
+import { MockUseState } from '@src/testUtils';
+import { reduxHooks } from '@src/hooks';
 
 import * as hooks from './hooks';
 import messages from './messages';
 
-jest.mock('../../../../hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useCardRelatedProgramsData: jest.fn(),
   },
 }));
 jest.mock('@openedx/frontend-base', () => {
-  const { formatMessage } = jest.requireActual('testUtils');
+  const { formatMessage } = jest.requireActual('@src/testUtils');
   return {
     ...jest.requireActual('@openedx/frontend-base'),
     useIntl: () => ({

@@ -1,13 +1,13 @@
 import { useToggle } from '@openedx/paragon';
 
-import { MockUseState } from 'testUtils';
+import { MockUseState } from '@src/testUtils';
 
-import track from 'tracking';
-import { reduxHooks } from '../../hooks';
+import track from '@src/tracking';
+import { reduxHooks } from '@src/hooks';
 
 import * as hooks from './hooks';
 
-jest.mock('../../hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useAddFilter: jest.fn(),
     useRemoveFilter: jest.fn(),
@@ -23,7 +23,7 @@ jest.mock('@openedx/paragon', () => ({
   ]),
 }));
 
-jest.mock('tracking', () => ({
+jest.mock('@src/tracking', () => ({
   filter: {
     filterClicked: jest.fn(),
     filterOptionSelected: jest.fn(),

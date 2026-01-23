@@ -1,10 +1,10 @@
-import { reduxHooks } from '../../../hooks';
+import { reduxHooks } from '@src/hooks';
 
 import * as hooks from './hooks';
 import { renderHook } from '@testing-library/react';
-import MasqueradeUserContext from '../../../data/contexts/MasqueradeUserContext';
+import MasqueradeUserContext from '@src/data/contexts/MasqueradeUserContext';
 
-jest.mock('../../../hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useMasqueradeData: jest.fn(),
     useCardEnrollmentData: jest.fn(),

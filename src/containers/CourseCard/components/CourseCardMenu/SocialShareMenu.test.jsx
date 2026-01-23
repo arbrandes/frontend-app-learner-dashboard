@@ -1,19 +1,19 @@
 import { IntlProvider } from '@openedx/frontend-base';
 import { render, screen } from '@testing-library/react';
 import { when } from 'jest-when';
-import track from 'tracking';
-import { reduxHooks } from 'hooks';
-import MasqueradeUserContext from '../../../../data/contexts/MasqueradeUserContext';
+import track from '@src/tracking';
+import { reduxHooks } from '@src/hooks';
+import MasqueradeUserContext from '@src/data/contexts/MasqueradeUserContext';
 
 import { useEmailSettings } from './hooks';
 import SocialShareMenu from './SocialShareMenu';
 import messages from './messages';
 
-jest.mock('tracking', () => ({
+jest.mock('@src/tracking', () => ({
   socialShare: 'test-social-share-key',
 }));
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useCardCourseData: jest.fn(),
     useCardEnrollmentData: jest.fn(),

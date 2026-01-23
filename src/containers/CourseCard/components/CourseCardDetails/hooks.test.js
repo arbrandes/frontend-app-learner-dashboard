@@ -1,12 +1,11 @@
 import { useIntl } from '@openedx/frontend-base';
 
-import { keyStore } from 'utils';
-import { utilHooks, reduxHooks } from 'hooks';
-
+import { keyStore } from '@src/utils';
+import { utilHooks, reduxHooks } from '@src/hooks';
 import * as hooks from './hooks';
 import messages from './messages';
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   utilHooks: {
     useFormatDate: jest.fn(),
   },
@@ -21,7 +20,7 @@ jest.mock('hooks', () => ({
 }));
 
 jest.mock('@openedx/frontend-base', () => {
-  const { formatMessage } = jest.requireActual('testUtils');
+  const { formatMessage } = jest.requireActual('@src/testUtils');
   return {
     ...jest.requireActual('@openedx/frontend-base'),
     useIntl: () => ({

@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 import userEvent from '@testing-library/user-event';
 
-import { reduxHooks } from 'hooks';
-import MasqueradeUserContext from '../../../../../../data/contexts/MasqueradeUserContext';
+import { reduxHooks } from '@src/hooks';
+import MasqueradeUserContext from '@src/data/contexts/MasqueradeUserContext';
 import messages from './messages';
 import hooks from './hooks';
 import MustRequestContent from './MustRequestContent';
@@ -12,7 +12,7 @@ jest.mock('./hooks', () => ({
   useCreditRequestData: jest.fn(),
 }));
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useCardCreditData: jest.fn(),
   },

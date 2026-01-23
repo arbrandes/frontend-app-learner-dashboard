@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 
-import { reduxHooks } from 'hooks';
+import { reduxHooks } from '@src/hooks';
 import RejectedContent from './RejectedContent';
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useCardCreditData: jest.fn(),
   },

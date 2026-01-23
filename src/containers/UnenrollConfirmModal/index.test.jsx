@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { formatMessage } from 'testUtils';
+import { formatMessage } from '@src/testUtils';
 
 import { IntlProvider } from '@openedx/frontend-base';
 import { UnenrollConfirmModal } from '.';

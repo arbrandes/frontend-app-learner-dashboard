@@ -1,9 +1,9 @@
 import { useIntl } from '@openedx/frontend-base';
 import { useWindowSize, breakpoints } from '@openedx/paragon';
-import { apiHooks } from '../../hooks';
-import { MockUseState } from 'testUtils';
+import { apiHooks } from '@src/hooks';
+import { MockUseState } from '@src/testUtils';
 
-import appMessages from '../../messages';
+import appMessages from '@src/messages';
 import * as hooks from './hooks';
 
 jest.mock('@openedx/paragon', () => ({
@@ -13,7 +13,7 @@ jest.mock('@openedx/paragon', () => ({
 }));
 
 jest.mock('@openedx/frontend-base', () => {
-  const { formatMessage } = jest.requireActual('../../testUtils');
+  const { formatMessage } = jest.requireActual('@src/testUtils');
   return {
     ...jest.requireActual('@openedx/frontend-base',),
     useIntl: () => ({
@@ -22,7 +22,7 @@ jest.mock('@openedx/frontend-base', () => {
   };
 });
 
-jest.mock('../../hooks', () => ({
+jest.mock('@src/hooks', () => ({
   apiHooks: {
     useInitializeApp: jest.fn(),
   },

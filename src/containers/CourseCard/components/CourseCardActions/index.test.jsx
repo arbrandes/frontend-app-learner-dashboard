@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { reduxHooks } from 'hooks';
+import { reduxHooks } from '@src/hooks';
 
 import CourseCardActions from '.';
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     useCardCourseRunData: jest.fn(),
     useCardEnrollmentData: jest.fn(),

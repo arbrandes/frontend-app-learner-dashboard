@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { IntlProvider } from '@openedx/frontend-base';
 import { MemoryRouter } from 'react-router-dom';
-import { reduxHooks } from 'hooks';
+import { reduxHooks } from '@src/hooks';
 import WidgetSidebarSlot from '.';
 
-jest.mock('hooks', () => ({
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
     usePlatformSettingsData: jest.fn(),
   },

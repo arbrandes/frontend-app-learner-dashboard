@@ -9,19 +9,19 @@ import {
 } from '@testing-library/react';
 
 import { IntlProvider } from '@openedx/frontend-base';
-import GlobalDataProvider from '../data/contexts/GlobalDataProvider';
-import MasqueradeUserProvider from '../data/contexts/MasqueradeUserProvider';
-import { useFormatDate } from 'utils/hooks';
-import api from 'data/services/lms/api';
-import * as fakeData from '../data/services/lms/fakeData/courses';
-import reducers from 'data/redux';
-import { selectors } from 'data/redux';
-import { cardId as genCardId } from 'data/redux/app/reducer';
-import messages from '../i18n';
-import Main from '../Main';
+import GlobalDataProvider from '@src/data/contexts/GlobalDataProvider';
+import MasqueradeUserProvider from '@src/data/contexts/MasqueradeUserProvider';
+import { useFormatDate } from '@src/utils/hooks';
+import api from '@src/data/services/lms/api';
+import * as fakeData from '@src/data/services/lms/fakeData/courses';
+import reducers from '@src/data/redux';
+import { selectors } from '@src/data/redux';
+import { cardId as genCardId } from '@src/data/redux/app/reducer';
+import messages from '@src/i18n';
+import Main from '@src/Main';
 import Inspector from './inspector';
 import appMessages from './messages';
-import { initializeMockServices } from '../setupTest';
+import { initializeMockServices } from '@src/setupTest';
 
 jest.unmock('@openedx/paragon');
 jest.unmock('@openedx/paragon/icons');
@@ -33,7 +33,7 @@ beforeAll(() => {
   initializeMockServices();
 });
 
-jest.mock('../slots/WidgetSidebarSlot', () => jest.fn(() => 'widget-sidebar'));
+jest.mock('@src/slots/WidgetSidebarSlot', () => jest.fn(() => 'widget-sidebar'));
 
 jest.mock('@openedx/frontend-base', () => ({
   ...jest.requireActual('@openedx/frontend-base'),

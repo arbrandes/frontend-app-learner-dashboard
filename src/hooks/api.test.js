@@ -1,19 +1,19 @@
 import React from 'react';
 import { SiteContext } from '@openedx/frontend-base';
 import * as ReactQuery from '@tanstack/react-query';
-import keyStore from '../utils/keyStore';
-import { RequestKeys } from 'data/constants/requests';
-import api from 'data/services/lms/api';
-import { post } from 'data/services/lms/utils';
-import * as reduxHooks from 'data/redux/hooks';
+import keyStore from '@src/utils/keyStore';
+import { RequestKeys } from '@src/data/constants/requests';
+import api from '@src/data/services/lms/api';
+import { post } from '@src/data/services/lms/utils';
+import * as reduxHooks from '@src/data/redux/hooks';
 import * as apiHooks from './api';
 
 const reduxKeys = keyStore(reduxHooks);
 
-jest.mock('data/services/lms/utils', () => ({
+jest.mock('@src/data/services/lms/utils', () => ({
   post: jest.fn((...args) => ({ post: args })),
 }));
-jest.mock('data/services/lms/api', () => ({
+jest.mock('@src/data/services/lms/api', () => ({
   initializeList: jest.fn(),
   updateEntitlementEnrollment: jest.fn(),
   unenrollFromCourse: jest.fn(),
@@ -21,7 +21,7 @@ jest.mock('data/services/lms/api', () => ({
   updateEmailSettings: jest.fn(),
   createCreditRequest: jest.fn(),
 }));
-jest.mock('../data/redux/hooks', () => ({
+jest.mock('@src/data/redux/hooks', () => ({
   useCardCourseRunData: jest.fn(),
   useCardCreditData: jest.fn(),
   useCardEntitlementData: jest.fn(),
@@ -35,7 +35,7 @@ jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn(),
   useQueryClient: jest.fn(),
 }));
-jest.mock('../data/contexts/GlobalDataContext', () => ({
+jest.mock('@src/data/contexts/GlobalDataContext', () => ({
   default: {
     Provider: ({ children }) => children,
     Consumer: ({ children }) => children({

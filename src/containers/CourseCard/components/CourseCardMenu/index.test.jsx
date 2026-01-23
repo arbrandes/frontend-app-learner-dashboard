@@ -1,22 +1,22 @@
 import { when } from 'jest-when';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { IntlProvider } from '@openedx/frontend-base';
-
-import { reduxHooks } from 'hooks';
+import { reduxHooks } from '@src/hooks';
+import MasqueradeUserContext from '@src/data/contexts/MasqueradeUserContext';
 import * as hooks from './hooks';
 import CourseCardMenu from '.';
 import messages from './messages';
-jest.mock('hooks', () => ({
+
+jest.mock('@src/hooks', () => ({
   reduxHooks: {
-    useMasqueradeData: jest.fn(),
+
     useCardEnrollmentData: jest.fn(), 
   },
 }));
 jest.mock('./SocialShareMenu', () => jest.fn(() => <div>SocialShareMenu</div>));
-jest.mock('../../../EmailSettingsModal', () => jest.fn(() => <div>EmailSettingsModal</div>));
-jest.mock('../../../UnenrollConfirmModal', () => jest.fn(() => <div>UnenrollConfirmModal</div>));
+jest.mock('@src/containers/EmailSettingsModal', () => jest.fn(() => <div>EmailSettingsModal</div>));
+jest.mock('@src/containers/UnenrollConfirmModal', () => jest.fn(() => <div>UnenrollConfirmModal</div>));
 jest.mock('./hooks', () => ({
   useEmailSettings: jest.fn(),
   useUnenrollData: jest.fn(),
@@ -68,7 +68,6 @@ const mockHooks = (returnVals = {}) => {
     },
     { isCardHook: true },
   );
-  mockHook(reduxHooks.useMasqueradeData, { isMasquerading: !!returnVals.isMasquerading });
   mockHook(
     reduxHooks.useCardEnrollmentData,
     { isEmailEnabled: !!returnVals.isEmailEnabled },
@@ -76,7 +75,13 @@ const mockHooks = (returnVals = {}) => {
   );
 };
 
-const renderComponent = () => render(<IntlProvider locale="en"><CourseCardMenu {...props} /></IntlProvider>);
+const renderComponent = (isMasquerading = false) => render(
+  <IntlProvider locale="en">
+    <MasqueradeUserContext.Provider value={{ isMasquerading }}>
+      <CourseCardMenu {...props} />
+    </MasqueradeUserContext.Provider>
+  </IntlProvider>
+);
 
 describe('CourseCardMenu', () => {
   describe('hooks', () => {
@@ -91,7 +96,6 @@ describe('CourseCardMenu', () => {
       when(hooks.useOptionVisibility).expectCalledWith(props.cardId);
     });
     it('initializes redux hook data ', () => {
-      when(reduxHooks.useMasqueradeData).expectCalledWith();
       when(reduxHooks.useCardEnrollmentData).expectCalledWith(props.cardId);
     });
   });
@@ -152,8 +156,8 @@ describe('CourseCardMenu', () => {
           });
           describe('masquerading', () => {
             it('renders but unenroll is disabled', async () => {
-              mockHooks({ ...hookProps, isMasquerading: true });
-              renderComponent();
+              mockHooks({ ...hookProps });
+              renderComponent(true);
 
               const user = userEvent.setup();
               const dropdown = screen.getByRole('button', { name: messages.dropdownAlt.defaultMessage });
@@ -161,8 +165,7 @@ describe('CourseCardMenu', () => {
               await user.click(dropdown);
               const unenrollOption = screen.getByRole('button', { name: messages.unenroll.defaultMessage });
               expect(unenrollOption).toBeInTheDocument();
-              // the component is not returning the attribute aria disabled
-              //expect(unenrollOption).toHaveAttribute('aria-disabled', 'true');
+              expect(unenrollOption).toHaveAttribute('aria-disabled', 'true');
               const socialShareMenu = screen.getByText('SocialShareMenu');
               expect(socialShareMenu).toBeInTheDocument();
               const unenrollConfirmModal = screen.getByText('UnenrollConfirmModal');
