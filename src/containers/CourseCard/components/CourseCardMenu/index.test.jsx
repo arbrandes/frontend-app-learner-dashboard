@@ -11,7 +11,7 @@ import messages from './messages';
 jest.mock('@src/hooks', () => ({
   reduxHooks: {
 
-    useCardEnrollmentData: jest.fn(), 
+    useCardEnrollmentData: jest.fn(),
   },
 }));
 jest.mock('./SocialShareMenu', () => jest.fn(() => <div>SocialShareMenu</div>));

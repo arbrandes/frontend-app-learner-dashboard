@@ -1,10 +1,5 @@
 import { within } from '@testing-library/react';
 
-// import fakeData from 'data/services/lms/fakeData';
-// import { gradingStatusTransform } from 'data/redux/grading/selectors/selected';
-
-// import appMessages from './messages';
-
 /**
  * App inspector class providing methods to return elements from within
  * the virtual DOM

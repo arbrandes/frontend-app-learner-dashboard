@@ -47,7 +47,7 @@ jest.mock('@openedx/frontend-base', () => ({
   logError: jest.fn(),
 }));
 
-jest.mock('../utils/hooks', () => {
+jest.mock('@src/utils/hooks', () => {
   const formatDate = jest.fn(date => `Date-${date}`);
   return {
     formatDate,
@@ -114,10 +114,6 @@ const renderEl = async () => {
   getState();
 };
 
-const waitForEqual = async (valFn, expected, key) => waitFor(() => {
-  expect(valFn(), `${key} is expected to equal ${expected}`).toEqual(expected);
-});
-
 const loadApp = async (courses) => {
   const compiledCourses = courses.map(compileCourseRunData);
   initCourses.mockReturnValue(compiledCourses);
@@ -170,19 +166,8 @@ describe('ESG app integration tests', () => {
       const cardId = genCardId(index);
       const cardDetails = inspector.get.card.details(card);
       
-      console.log('Debug: Testing course with:', { 
-        index, 
-        cardId,
-        stateKeys: Object.keys(state.app.courseData || {}),
-        courseDataType: typeof state.app.courseData
-      });
-      
       const courseData = selectors.app.courseCard.course(state, cardId);
       if (!courseData) {
-        console.error(`Course data not found for cardId: ${cardId}`, { 
-          state: state.app.courseData, 
-          availableCards: Object.keys(state.app.courseData || {})
-        });
         throw new Error(`Course data not found for cardId: ${cardId}`);
       }
       

@@ -25,7 +25,6 @@ jest.mock('./hooks', () => ({
   useEmailSettings: jest.fn(),
 }));
 
-
 const props = {
   cardId: 'test-card-id',
   emailSettings: { show: jest.fn() },
